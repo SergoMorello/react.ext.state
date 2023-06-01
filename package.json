@@ -8,8 +8,28 @@
     "test": "jest",
     "build": "tsc"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergoMorello/react.ext.state.git"
+  },
+  "keywords": [
+    "js",
+	"ts",
+	"react",
+    "state",
+	"ext state"
+  ],
   "author": "Sergey Serov",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SergoMorello/react.ext.state/issues"
+  },
+  "homepage": "https://github.com/SergoMorello/react.ext.state#readme",
   "devDependencies": {
     "@types/jest": "^29.5.2",
     "@types/node": "^20.2.5",
