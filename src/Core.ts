@@ -13,8 +13,8 @@ export default abstract class Core {
 	constructor(groupName?: string) {
 		this.state = {};
 		this.disableState = false;
-		this.name = <string>groupName;
-		this.events = new EventEmitter(groupName);
+		this.name = <string>groupName ?? this.constructor.name;
+		this.events = new EventEmitter(groupName ?? this.constructor.name.length > 0 ? this.constructor.name : undefined);
 		this.useEvent = this.useEvent.bind(this);
 		this.useState = this.useState.bind(this);
 	}
@@ -44,6 +44,9 @@ export default abstract class Core {
 	public useState<T>(name: string, initialValue?: any): T | undefined {
 		const [state, setState] = React.useState<T>(initialValue ?? this.state?.[name]);
 		this.useEvent(name, setState);
+		if (!(name in this.state) && initialValue) {
+			this.state[name] = initialValue;
+		}
 		return state;
 	}
 

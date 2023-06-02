@@ -68,3 +68,44 @@ const Info = ({nameState}) => {
 
 export default Info;
 ```
+
+### Or
+
+#### Isolated class style
+```js
+// store.js
+import Ext from "react-ext-state";
+
+export default new class store extends Ext {
+	state = {
+		info: 'Any inital value'
+	}
+
+	set = (nameState, title) => {
+		this.setState(nameState, title)
+	}
+}
+
+// Button.js
+import store from "./store.js";
+
+const Button = ({title, nameState}) => {
+	const handle = () => {
+		store.set(nameState, title);
+	};
+
+	return(<button onClick={handle}>{title}</button>);
+};
+
+export default Button;
+
+// Info.js
+import store from "./store.js";
+
+const Info = ({nameState}) => {
+	const info = store.useState(nameState);
+	return(<div className="info">{info}</div>);
+};
+
+export default Info;
+```
