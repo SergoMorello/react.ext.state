@@ -4,6 +4,11 @@
 
 ![Example](https://github.com/SergoMorello/react.ext.state/blob/dev/doc/chrome-capture-2023-5-1.gif?raw=true)
 
+### Install
+```
+npm i react-ext-state
+```
+
 ### Examples:
 
 #### useState
@@ -29,7 +34,7 @@ import Ext from "react-ext-state";
 
 const Button = ({title, nameState}) => {
 	const handle = () => {
-		Ext.set(nameState, title);
+		Ext.setState(nameState, title);
 	};
 
 	return(<button onClick={handle}>{title}</button>);
