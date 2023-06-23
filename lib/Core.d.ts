@@ -1,4 +1,4 @@
-import { Events } from "easy-event-emitter";
+import { Events, Event } from "easy-event-emitter";
 import { TState } from "./Types";
 export default abstract class Core {
     protected events: Events;
@@ -21,6 +21,13 @@ export default abstract class Core {
      * @returns {any}
      */
     useState<T>(name: string, initialValue?: any): T | undefined;
+    /**
+     * Create event state listener
+     * @param {string} name State name
+     * @param {Function} callback Callback
+     * @returns {Event}
+     */
+    createListener(name: string, callback: Function): Event;
     /**
      * Emit and save state
      * @param {string} name State name

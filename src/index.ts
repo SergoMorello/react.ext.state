@@ -1,4 +1,5 @@
 import Core from "./Core";
+import {Event} from "easy-event-emitter";
 import { IConfig } from "./Types";
 
 /** React Ext state */
@@ -30,7 +31,15 @@ export default class Ext extends Core {
 	 * @param {any} initialValue Initial value
 	 * @returns {any}
 	 */
-	public static useState =  this.instance.useState;
+	public static useState = this.instance.useState;
+
+	/**
+	 * Create event state listener
+	 * @param {string} name State name
+	 * @param {Function} callback Callback
+	 * @returns {Event}
+	 */
+	public static createListener = this.instance.createListener;
 
 	/**
 	 * Set state by name
@@ -41,5 +50,6 @@ export default class Ext extends Core {
 	public static setState = this.instance.setState;
 }
 
+export {Event};
 export const useState = Ext.useState;
 export const useEvent = Ext.useEvent;

@@ -1,5 +1,8 @@
 import React from "react";
-import EventEmitter,{ Events } from "easy-event-emitter";
+import EventEmitter,{
+	Events,
+	Event
+} from "easy-event-emitter";
 import {
 	TState
 } from "./Types";
@@ -18,6 +21,7 @@ export default abstract class Core {
 		this.useEvent = this.useEvent.bind(this);
 		this.useState = this.useState.bind(this);
 		this.setState = this.setState.bind(this);
+		this.createListener = this.createListener.bind(this);
 	}
 
 	/**
@@ -49,6 +53,17 @@ export default abstract class Core {
 			this.state[name] = initialValue;
 		}
 		return state;
+	}
+
+
+	/**
+	 * Create event state listener
+	 * @param {string} name State name
+	 * @param {Function} callback Callback
+	 * @returns {Event}
+	 */
+	public createListener(name: string, callback: Function): Event {
+		return this.events.addListener(name, callback);
 	}
 
 	/**

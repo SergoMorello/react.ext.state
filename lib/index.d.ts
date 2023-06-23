@@ -1,4 +1,5 @@
 import Core from "./Core";
+import { Event } from "easy-event-emitter";
 import { IConfig } from "./Types";
 /** React Ext state */
 export default class Ext extends Core {
@@ -24,6 +25,13 @@ export default class Ext extends Core {
      */
     static useState: <T>(name: string, initialValue?: any) => T | undefined;
     /**
+     * Create event state listener
+     * @param {string} name State name
+     * @param {Function} callback Callback
+     * @returns {Event}
+     */
+    static createListener: (name: string, callback: Function) => Event;
+    /**
      * Set state by name
      * @param {string|{[index: string]: any}} nameOrObject State name or object key - value
      * @param {any} data Any data
@@ -31,5 +39,6 @@ export default class Ext extends Core {
      */
     static setState: (nameOrObject: string | import("./Types").TState, data: any) => void;
 }
+export { Event };
 export declare const useState: <T>(name: string, initialValue?: any) => T | undefined;
 export declare const useEvent: (name: string, callback: Function, deps?: any[]) => void;
