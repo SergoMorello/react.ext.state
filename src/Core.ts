@@ -17,6 +17,7 @@ export default abstract class Core {
 		this.events = new EventEmitter(groupName ?? this.constructor.name.length > 0 ? this.constructor.name : undefined);
 		this.useEvent = this.useEvent.bind(this);
 		this.useState = this.useState.bind(this);
+		this.setState = this.setState.bind(this);
 	}
 
 	/**
