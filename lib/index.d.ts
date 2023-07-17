@@ -1,6 +1,6 @@
 import Core from "./Core";
 import { Event } from "easy-event-emitter";
-import { IConfig } from "./Types";
+import { IConfig, TuseStateReturn, TConfigStore, TStore } from "./Types";
 /** React Ext state */
 export default class Ext extends Core {
     private static instance;
@@ -21,9 +21,9 @@ export default class Ext extends Core {
      * The hook for change state variable
      * @param {string} name State name
      * @param {any} initialValue Initial value
-     * @returns {any}
+     * @returns {TuseStateReturn<T>}
      */
-    static useState: <T>(name: string, initialValue?: any) => T | undefined;
+    static useState: <T>(name: string, initialValue?: any) => TuseStateReturn<T>;
     /**
      * Create event state listener
      * @param {string} name State name
@@ -38,7 +38,13 @@ export default class Ext extends Core {
      * @returns {void}
      */
     static setState: (nameOrObject: string | import("./Types").TState, data: any) => void;
+    /**
+     * Create store experimental method
+     * @param {TConfigStore} config
+     * @returns {TStore<T>}
+     */
+    static createStore<T>(config: TConfigStore): TStore<T>;
 }
 export { Event };
-export declare const useState: <T>(name: string, initialValue?: any) => T | undefined;
+export declare const useState: <T>(name: string, initialValue?: any) => TuseStateReturn<T>;
 export declare const useEvent: (name: string, callback: Function, deps?: any[]) => void;

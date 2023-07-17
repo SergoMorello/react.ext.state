@@ -1,5 +1,5 @@
 import { Events, Event } from "easy-event-emitter";
-import { TState } from "./Types";
+import { TState, TuseStateReturn } from "./Types";
 export default abstract class Core {
     protected events: Events;
     protected state: TState;
@@ -18,9 +18,9 @@ export default abstract class Core {
      * The hook for change state variable
      * @param {string} name State name
      * @param {any} initialValue Initial value
-     * @returns {any}
+     * @returns {TuseStateReturn<T>}
      */
-    useState<T>(name: string, initialValue?: any): T | undefined;
+    useState<T>(name: string, initialValue?: any): TuseStateReturn<T>;
     /**
      * Create event state listener
      * @param {string} name State name

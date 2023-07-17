@@ -4,7 +4,8 @@ import EventEmitter,{
 	Event
 } from "easy-event-emitter";
 import {
-	TState
+	TState,
+	TuseStateReturn
 } from "./Types";
 
 export default abstract class Core {
@@ -44,15 +45,15 @@ export default abstract class Core {
 	 * The hook for change state variable
 	 * @param {string} name State name
 	 * @param {any} initialValue Initial value
-	 * @returns {any}
+	 * @returns {TuseStateReturn<T>}
 	 */
-	public useState<T>(name: string, initialValue?: any): T | undefined {
+	public useState<T>(name: string, initialValue?: any): TuseStateReturn<T> {
 		const [state, setState] = React.useState<T>(initialValue ?? this.state?.[name]);
 		this.useEvent(name, setState);
 		if (!(name in this.state) && initialValue) {
 			this.state[name] = initialValue;
 		}
-		return state;
+		return [state, (data) => this.setState(name, data)];
 	}
 
 

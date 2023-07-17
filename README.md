@@ -47,7 +47,7 @@ export default Button;
 import Ext from "react-ext-state";
 
 const Info = ({nameState}) => {
-	const info = Ext.useState(nameState, 'Any inital value');
+	const [info] = Ext.useState(nameState, 'Any inital value');
 	return(<div className="info">{info}</div>);
 };
 
@@ -103,7 +103,7 @@ export default Button;
 import store from "./store.js";
 
 const Info = ({nameState}) => {
-	const info = store.useState(nameState);
+	const [info] = store.useState(nameState);
 	return(<div className="info">{info}</div>);
 };
 
